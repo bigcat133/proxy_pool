@@ -15,8 +15,6 @@ import re
 import sys
 import requests
 
-sys.path.append('..')
-
 from Util.WebRequest import WebRequest
 from Util.utilFunction import getHtmlTree
 

@@ -17,8 +17,6 @@ import sys
 from werkzeug.wrappers import Response
 from flask import Flask, jsonify, request
 
-sys.path.append('../')
-
 from Config.ConfigGetter import config
 from Manager.ProxyManager import ProxyManager
 
