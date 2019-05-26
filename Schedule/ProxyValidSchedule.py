@@ -12,15 +12,12 @@
 """
 __author__ = 'JHao'
 
-import sys
 import time
 
 try:
     from Queue import Queue  # py3
 except:
     from queue import Queue  # py2
-
-sys.path.append('../')
 
 from Schedule.ProxyCheck import ProxyCheck
 from Manager.ProxyManager import ProxyManager
@@ -56,8 +53,9 @@ class ProxyValidSchedule(ProxyManager, object):
                 self.log.info("Start valid useful proxy")
                 self.__validProxy()
             else:
-                self.log.info('Valid Complete! sleep 5 sec.')
-                time.sleep(5)
+                sleep_t = 15
+                self.log.info('Valid Complete! sleep %s sec.', sleep_t)
+                time.sleep(sleep_t)
                 self.putQueue()
 
     def putQueue(self):

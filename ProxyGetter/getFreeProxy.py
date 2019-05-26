@@ -12,7 +12,6 @@
 -------------------------------------------------
 """
 import re
-import sys
 import requests
 
 from Util.WebRequest import WebRequest
