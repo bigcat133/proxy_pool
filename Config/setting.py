@@ -68,3 +68,5 @@ SERVER_API = {
     "HOST": "0.0.0.0",  # The ip specified which starting the web API
     "PORT": 5010  # port number to which the server listens to
 }
+
+CHECK_URL = "http://www.pss-system.gov.cn"

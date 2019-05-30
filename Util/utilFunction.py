@@ -17,6 +17,7 @@ from lxml import etree
 
 from Util.LogHandler import LogHandler
 from Util.WebRequest import WebRequest
+from Config.ConfigGetter import config
 
 # logger = LogHandler(__name__, stream=False)
 
@@ -99,7 +100,8 @@ def validUsefulProxy(proxy):
     proxies = {"http": "http://{proxy}".format(proxy=proxy)}
     try:
         # 超过20秒的代理就不要了
-        r = requests.get('http://httpbin.org/ip', proxies=proxies, timeout=10, verify=False)
+        # old url is 'http://httpbin.org/ip'
+        r = requests.get(config.check_url, proxies=proxies, timeout=5, verify=False)
         if r.status_code == 200 and r.json().get("origin"):
             # logger.info('%s is ok' % proxy)
             return True
