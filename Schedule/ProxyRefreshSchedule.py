@@ -47,6 +47,8 @@ class ProxyRefreshSchedule(ProxyManager):
         self.log.info('ProxyRefreshSchedule: %s start validProxy' % time.ctime())
         # 计算剩余代理，用来减少重复计算
         remaining_proxies = self.getAll()
+        count = 0
+        e_count = 0
         while raw_proxy_item:
             raw_proxy = raw_proxy_item.get('proxy')
             if isinstance(raw_proxy, bytes):
@@ -56,12 +58,14 @@ class ProxyRefreshSchedule(ProxyManager):
             if (raw_proxy not in remaining_proxies) and validUsefulProxy(raw_proxy):
                 self.db.changeTable(self.useful_proxy_queue)
                 self.db.put(raw_proxy)
-                self.log.info('ProxyRefreshSchedule: %s validation pass' % raw_proxy)
+                count += 1
             else:
-                self.log.info('ProxyRefreshSchedule: %s validation fail' % raw_proxy)
+                e_count += 1
             self.db.changeTable(self.raw_proxy_queue)
             raw_proxy_item = self.db.pop()
             remaining_proxies = self.getAll()
+
+        self.log.info('ProxyRefreshSchedule: validation pass {count}, fail {e_count}'.format(count=count, e_count=e_count))
         self.log.info('ProxyRefreshSchedule: %s validProxy complete' % time.ctime())
 
 

@@ -45,7 +45,7 @@ DATABASES = {
 
 PROXY_GETTER = [
     "freeProxyFirst",
-    "freeProxySecond",
+    # "freeProxySecond",
     # "freeProxyThird",  # 网站已不能访问
     "freeProxyFourth",
     "freeProxyFifth",
@@ -60,6 +60,7 @@ PROXY_GETTER = [
     # "freeProxyWallFirst",
     # "freeProxyWallSecond",
     # "freeProxyWallThird"
+    "freeProxy_xicidaili",
 ]
 
 # # API config http://127.0.0.1:5010
@@ -70,4 +71,6 @@ SERVER_API = {
 }
 
 # CHECK_URL = "http://www.pss-system.gov.cn"
-CHECK_URL = "www.google.com"
+# CHECK_URL = "https://www.baidu.com"
+CHECK_URL = "http://kns.cnki.net/kns/brief/result.aspx"
+CHECK_URL = "http://httpbin.org/ip"

@@ -281,6 +281,22 @@ class GetFreeProxy(object):
             for proxy in proxies:
                 yield ':'.join(proxy)
 
+    @staticmethod
+    def freeProxy_xicidaili():
+        """
+        国内高匿代理
+        https://www.xicidaili.com/nn
+        """
+        urls = ['https://www.xicidaili.com/nn',
+                'https://www.xicidaili.com/nn/2',
+                'https://www.xicidaili.com/nn/3']
+        request = WebRequest()
+        for url in urls:
+            r = request.get(url, timeout=10)
+            proxies = re.findall(r'<td>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</td>[\s\S]*?<td>(\d+)</td>', r.text)
+            for proxy in proxies:
+                yield ":".join(proxy)
+
 
 if __name__ == '__main__':
     from ProxyGetter.CheckProxy import CheckProxy
@@ -295,7 +311,8 @@ if __name__ == '__main__':
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEight)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyNinth)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyTen)
-    CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEleven)
+    # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEleven)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyTwelve)
 
+    CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxy_xicidaili)
     # CheckProxy.checkAllGetProxyFunc()

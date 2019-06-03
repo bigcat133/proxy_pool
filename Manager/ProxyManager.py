@@ -44,14 +44,19 @@ class ProxyManager(object):
             # fetch
             try:
                 self.log.info("{func}: fetch proxy start".format(func=proxyGetter))
+                count = 0
+                e_count = 0
                 for proxy in getattr(GetFreeProxy, proxyGetter.strip())():
                     # 直接存储代理, 不用在代码中排重, hash 结构本身具有排重功能
                     proxy = proxy.strip()
                     if proxy and verifyProxyFormat(proxy):
-                        self.log.info('{func}: fetch proxy {proxy}'.format(func=proxyGetter, proxy=proxy))
+                        # self.log.info('{func}: fetch proxy {proxy}'.format(func=proxyGetter, proxy=proxy))
+                        count += 1
                         self.db.put(proxy)
                     else:
-                        self.log.error('{func}: fetch proxy {proxy} error'.format(func=proxyGetter, proxy=proxy))
+                        e_count += 1
+                        # self.log.error('{func}: fetch proxy {proxy} error'.format(func=proxyGetter, proxy=proxy))
+                self.log.info("{func}: fetch proxy {count}, fail {e_count}".format(func=proxyGetter, count=count, e_count=e_count))
             except Exception as e:
                 self.log.error("{func}: fetch proxy fail".format(func=proxyGetter))
                 continue
