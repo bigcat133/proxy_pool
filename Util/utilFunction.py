@@ -101,7 +101,7 @@ def validUsefulProxy(proxy):
     try:
         # 超过20秒的代理就不要了
         # old url is 'http://httpbin.org/ip'
-        r = requests.get(config.check_url, proxies=proxies, timeout=5, verify=False)
+        r = requests.get(config.check_url, proxies=proxies, timeout=10, verify=False)
         if r.status_code == 200 and r.json().get("origin"):
             # logger.info('%s is ok' % proxy)
             return True

@@ -55,6 +55,11 @@ class ProxyCheck(ProxyManager, Thread):
 
 
 if __name__ == '__main__':
-    # p = ProxyCheck()
-    # p.run()
-    pass
+    try:
+        from Queue import Queue  # py3
+    except:
+        from queue import Queue  # py2
+
+    queue = Queue()
+    p = ProxyCheck(queue, dict())
+    p.run()

@@ -69,4 +69,5 @@ SERVER_API = {
     "PORT": 5010  # port number to which the server listens to
 }
 
-CHECK_URL = "http://www.pss-system.gov.cn"
+# CHECK_URL = "http://www.pss-system.gov.cn"
+CHECK_URL = "www.google.com"
